@@ -1,12 +1,23 @@
 <template>
-  <div id="app">
-    <h1>Appointment Management System</h1>
-    <div id="nav">
-      <router-link :to="{ name: 'home' }">Home</router-link> | 
-      <router-link :to="{ name: 'appointments' }">Appointments</router-link>
+    <div>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand"> Appointment </a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'home' }" class="nav-link">Home <span class="sr-only"></span></router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'appointments' }" class="nav-link">Apponintments <span class="sr-only"></span></router-link>
+                    </li>
+                </ul>
+                <p id="navpstyle">
+                    © 2022-02 Made by Spider, All rights reserved
+                </p>
+            </div>
+        </nav>
+        <router-view />
     </div>
-    <router-view/>
-  </div>
 </template>
 
 <script>
@@ -21,11 +32,11 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
     margin-top: 60px;
   }
-  #nav {
-    font-size: 20px;
-    color: pink;
+  #navpstyle {
+      font-size: 15px;
+      margin-top: 30px;
+      color: #f3f3;
   }
 </style>
