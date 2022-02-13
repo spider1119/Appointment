@@ -26,11 +26,11 @@
           <a
             href="#"
             class="dropdown-item d-flex justify-content-between"
-            id="petName"
-            @click="$emit('requestKey', 'petName')"
+            id="user"
+            @click="$emit('requestKey', 'user')"
           >
             Pet Name
-            <font-awesome-icon icon="check" v-if="filterKey==='petName'" />
+            <font-awesome-icon icon="check" v-if="filterKey==='user'" />
           </a>
 
           <a

@@ -9,15 +9,15 @@
         <div class="card-body animated zoomIn" v-if="!hidepanel">
           <form id="aptForm" @submit.prevent="requestAdd">
             <div class="form-group form-row">
-              <label class="col-md-2 col-form-label text-md-right" for="petName">Pet Name</label>
+              <label class="col-md-2 col-form-label text-md-right" for="user">User</label>
               <div class="col-md-10">
                 <input
                   type="text"
                   class="form-control"
-                  name="petName"
-                  id="petName"
+                  name="user"
+                  id="user"
                   placeholder="Pet's Name"
-                  v-model="formData.petName"
+                  v-model="formData.user"
                 />
               </div>
             </div>
@@ -115,7 +115,7 @@ export default {
   methods: {
     requestAdd: function() {
       this.formData = {
-        petName: this.formData.petName,
+        user: this.formData.user,
         petOwner: this.formData.ownerName,
         aptDate: this.formData.aptDate + " " + this.formData.startTime,
         endDate: this.formData.endDate + " " + this.formData.endTime,
