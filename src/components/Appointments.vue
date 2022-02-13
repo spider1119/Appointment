@@ -2,13 +2,6 @@
   <div id="app" class="container">
     <div class="row justify-content-center">
       <AddAppointment @add="addApt" />
-      <SearchAppointment
-        @searchApts="searchAppointments"
-        @requestKey="updateFilterKey"
-        @requestDir="updateFilterDir"
-        :filterKey="filterKey"
-        :filterDir="filderDir"
-      />
       <AppointmentList :appointments="filteredApts" @delete="removeItem" @edit="editApt" />
     </div>
   </div>
@@ -17,7 +10,6 @@
 <script>
 import AppointmentList from "./AppointmentList";
 import AddAppointment from "./AddAppointment";
-import SearchAppointment from "./SearchAppointment";
 import axios from "axios";
 import _ from "lodash";
 
@@ -26,7 +18,6 @@ export default {
   components: {
     AppointmentList,
     AddAppointment,
-    SearchAppointment
   },
   data() {
     return {
@@ -49,9 +40,6 @@ export default {
       apt.aptId = this.aptIndex;
       this.aptIndex++;
       this.appointments.push(apt);
-    },
-    searchAppointments: function(searchKey) {
-      this.searchTerms = searchKey;
     },
     updateFilterKey: function(selectedFilterKey) {
       this.filterKey = selectedFilterKey;

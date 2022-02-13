@@ -16,11 +16,6 @@
         </button>
         <div class="w-100">
           <div class="d-flex justify-content-between">
-            <!-- <span
-              class="h4 text-primary"
-              contenteditable="contenteditable"
-              @blur="$emit('edit', appointment.aptId, 'petName', $event.target.innerText)"
-            >{{ appointment.petName }}</span> -->
             <span class="float-right">{{ formatedDate(appointment.aptDate) }} ~ {{ formatedDate(appointment.endDate) }}</span>
           </div>
           <div class="owner-name">

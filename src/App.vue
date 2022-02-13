@@ -10,6 +10,9 @@
                     <li class="nav-item">
                         <router-link :to="{ name: 'appointments' }" class="nav-link">Apponintments <span class="sr-only"></span></router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'vueappointment' }" class="nav-link">VueApponintments <span class="sr-only"></span></router-link>
+                    </li>
                 </ul>
                 <p id="navpstyle">
                     © 2022-02 Made by Spider, All rights reserved
