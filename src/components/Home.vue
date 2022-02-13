@@ -2,8 +2,12 @@
   <div id="app">
     <div class="fill-height row">
       <div class="col-sm-1">
-    <img src="@/assets/logo.png" width="50px">
+        <img src="@/assets/logo.png" width="50px">
       </div>
+      <button class="mr-4"
+                   color="primary"
+                   @click="closeCreationDialog()"
+            >Save</button>
       <div class="col-sm-3">
         <vue-cal class="vuecal--blue-theme vuecal--rounded-theme"
                  style="max-width: 270px;height: 290px"
@@ -43,15 +47,69 @@
 <script>
   import 'vue-cal/dist/vuecal.css'
   import VueCal from 'vue-cal'
+  import axios from "axios";
+
+
   export default {
     name: 'Home',
-    data () {
-      return{
+    data : vm => ({
         events: [],
         selectedDate: null,
+        selectedEvent: null,
+        
+        startDateMenu: false,
+        startDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        startDateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
+
+        endDateMenu: false,
+        endDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        endDateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
+
+        startTimeModel: false,
+        startTime: '09:00',
+
+        endTimeModel: false,
+        endTime: '09:00',
       }
+    ),
+    watch: {
+      startDate () {
+        this.startDateFormatted = this.formatDate(this.startDate)
+      },
+      endDate () {
+        this.endDateFormatted = this.formatDate(this.endDate)
+      },
     },
     components: { VueCal },
+    methods : {
+      formatDate (date) {
+        if (!date) return null
+
+        const [year, month, day] = date.split('-')
+        return `${month}/${day}/${year}`
+       },
+
+      closeCreationDialog () {
+      const aptUrl = "./data/appointments.json";
+      axios
+      .get(aptUrl)
+      .then(
+        res =>
+          (this.appointments = res.data.map(() => {
+            this.showEventCreationDialog = false
+            this.events.push({
+              start: this.startDate + ' ' + this.startTime,
+              end: this.endDate + ' ' + this.endTime,
+              title: this.petName,
+              content: this.notes,
+              class: 'test-class',
+              split: this.selectedEvent.split
+            })
+            this.selectedEvent = {}
+          }))
+      )
+    }
+  }
   }
 </script>
 
